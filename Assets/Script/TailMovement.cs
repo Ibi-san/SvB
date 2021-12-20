@@ -54,8 +54,8 @@ public class TailMovement : MonoBehaviour
 
     public void RemoveTail()
     {
-        Destroy(tailAmount[0].gameObject);
-        tailAmount.RemoveAt(0);
-        positions.RemoveAt(1);
+        Destroy(tailAmount[tailAmount.Count - 1].gameObject);
+        tailAmount.RemoveAt(tailAmount.Count - 1);
+        positions.RemoveAt(0);
     }
 }

@@ -6,7 +6,10 @@ public class FoodEat : MonoBehaviour
 {
     public TailMovement Player;
     bool inTrigger = false;
-    Coroutine runningCoroutine;
+    Coroutine BlockCoroutine;
+    Coroutine TailCoroutine;
+
+
     private void OnTriggerEnter(Collider other)
     {
         inTrigger = true;
@@ -22,8 +25,9 @@ public class FoodEat : MonoBehaviour
         
         if (other.gameObject.tag == "Block" && inTrigger == true)
         {
-            runningCoroutine = StartCoroutine(CoroutineForDelay(other));
-            //for (int i = 0; i < blockvalue; i++) Player.RemoveTail();
+            BlockCoroutine = StartCoroutine(BlockDelay(other));
+            TailCoroutine = StartCoroutine(TailDelay(other));
+            if (other.gameObject.GetComponent<Block>().Value == 0) StopCoroutine(TailCoroutine);
         }
         
     }
@@ -31,18 +35,29 @@ public class FoodEat : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         inTrigger = false;
-        StopCoroutine(runningCoroutine);
+        StopCoroutine(BlockCoroutine);
+        StopCoroutine(TailCoroutine);
     }
 
-    private IEnumerator CoroutineForDelay(Collider other)
+    private IEnumerator BlockDelay(Collider other)
     {
-        int blockvalue = other.gameObject.GetComponent<Block>().Value;
         Debug.Log("Block!!!");
         for (int i = 0; other.gameObject.GetComponent<Block>().Value > 0; i++)
         {
             other.gameObject.GetComponent<Block>().Value -= 1;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
+            if (other.gameObject.GetComponent<Block>().Value == 0) Destroy(other.transform.parent.gameObject);
         }
+
         
+    }
+
+    private IEnumerator TailDelay (Collider other)
+    {
+        for (int i = 0; other.gameObject.GetComponent<Block>().Value > 0; i++)
+        {
+            Player.RemoveTail();
+            yield return new WaitForSeconds(0.099f);
+        }
     }
 }
