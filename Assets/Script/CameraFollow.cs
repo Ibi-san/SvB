@@ -4,9 +4,8 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform Player;
     public Vector3 CameraOffset;
-    public float Speed;
 
-    void Update()
+    void LateUpdate()
     {
         float verticalInput = Input.GetAxis("Vertical");
 

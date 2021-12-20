@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Food
   - Tail
+  - Block
   layers:
   - Default
   - TransparentFX
