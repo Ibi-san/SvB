@@ -10,12 +10,12 @@ public class Player : MonoBehaviour
     {
         int Value = TailMovement.tailAmount.Count;
         Text.text = Value.ToString();
-        if (Value < 1) Death();
+        if (TailMovement.tailAmount.Count < 1) Death();
     }
 
     public void Death()
     {
         Game.OnPlayerDeath();
-        TailMovement._rigidbody.isKinematic = true;
+        TailMovement.speed = 0;
     }
 }
