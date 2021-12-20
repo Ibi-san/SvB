@@ -5,7 +5,7 @@ public class CollisionScript : MonoBehaviour
 {
     public TailMovement Player;
     bool inTrigger = false;
-    Coroutine BlockCoroutine;
+    public Coroutine BlockCoroutine;
     public Coroutine TailCoroutine;
 
 
@@ -56,7 +56,7 @@ public class CollisionScript : MonoBehaviour
         for (int i = 0; other.gameObject.GetComponent<Block>().Value > 0; i++)
         {
             Player.RemoveTail();
-            yield return new WaitForSeconds(0.099f);
+            yield return new WaitForSeconds(0.09999f);
         }
     }
 }

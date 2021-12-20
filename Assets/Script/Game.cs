@@ -33,6 +33,7 @@ public class Game : MonoBehaviour
         CurrentState = State.Loss;
         Controls.enabled = false;
         collisionScript.StopCoroutine(collisionScript.TailCoroutine);
+        collisionScript.StopCoroutine(collisionScript.BlockCoroutine);
         Debug.Log("Game Over...");
     }
 
