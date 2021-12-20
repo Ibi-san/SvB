@@ -1,13 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodEat : MonoBehaviour
+public class CollisionScript : MonoBehaviour
 {
     public TailMovement Player;
     bool inTrigger = false;
     Coroutine BlockCoroutine;
-    Coroutine TailCoroutine;
+    public Coroutine TailCoroutine;
 
 
     private void OnTriggerEnter(Collider other)
