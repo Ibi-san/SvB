@@ -7,6 +7,7 @@ public class CollisionScript : MonoBehaviour
     bool inTrigger = false;
     public Coroutine BlockCoroutine;
     public Coroutine TailCoroutine;
+    public Game Game;
 
 
     private void OnTriggerEnter(Collider other)
@@ -28,7 +29,13 @@ public class CollisionScript : MonoBehaviour
             TailCoroutine = StartCoroutine(TailDelay(other));
             if (other.gameObject.GetComponent<Block>().Value == 0) StopCoroutine(TailCoroutine);
         }
-        
+
+        if (other.gameObject.tag == "Finishzone")
+        {
+            Player.speed = 0;
+            Game.OnPlayerWon();
+            Debug.Log("Win!!!");
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -41,11 +48,11 @@ public class CollisionScript : MonoBehaviour
     private IEnumerator BlockDelay(Collider other)
     {
         Debug.Log("Block!!!");
-        for (int i = 0; other.gameObject.GetComponent<Block>().Value > 0; i++)
+        for (int i = 0; other.gameObject.GetComponent<Block>().Value >= 0; i++)
         {
+            yield return new WaitForSeconds(0.08f);
             other.gameObject.GetComponent<Block>().Value -= 1;
-            yield return new WaitForSeconds(0.1f);
-            if (other.gameObject.GetComponent<Block>().Value == 0) Destroy(other.transform.parent.gameObject);
+            if (other.gameObject.GetComponent<Block>().Value == 0) other.transform.parent.gameObject.SetActive(false);
         }
 
         
@@ -56,7 +63,7 @@ public class CollisionScript : MonoBehaviour
         for (int i = 0; other.gameObject.GetComponent<Block>().Value > 0; i++)
         {
             Player.RemoveTail();
-            yield return new WaitForSeconds(0.09999f);
+            yield return new WaitForSeconds(0.08f);
         }
     }
 }

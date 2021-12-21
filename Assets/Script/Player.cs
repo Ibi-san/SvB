@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
         int Value = TailMovement.tailAmount.Count;
         Text.text = Value.ToString();
         if (TailMovement.tailAmount.Count < 1) Death();
+
+        if (Input.GetKey("x")) TailMovement.AddTail();
     }
 
     public void Death()

@@ -94,7 +94,7 @@ TextMesh:
   m_Font: {fileID: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!1 &3880480516581987242
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,8 +203,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa652c0739c48243a36531e9d5d0761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 1
+  Value: 0
   Text: {fileID: 7058563889067653847}
+  minValue: 0
+  maxValue: 0
 --- !u!1 &5116915347396505075
 GameObject:
   m_ObjectHideFlags: 0

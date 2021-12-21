@@ -7,6 +7,7 @@ TagManager:
   - Food
   - Tail
   - Block
+  - Finishzone
   layers:
   - Default
   - TransparentFX
