@@ -10,17 +10,29 @@ public class Game : MonoBehaviour
     public GameObject Level1;
     public GameObject Level2;
     public GameObject Level3;
+    public GameObject StartCanvas;
+
     public enum State
     {
+        StartMenu,
         Playing,
         Won,
-        Loss
+        Loss,
     }
 
     public State CurrentState { get; private set; }
 
+
     private void Start()
     {
+        if (gameStarted == false) CurrentState = State.StartMenu;
+        else CurrentState = State.Playing;
+        if (CurrentState == State.StartMenu)
+        {
+            _player.enabled = false;
+            Time.timeScale = 0;
+            StartCanvas.SetActive(true);
+        }
         if (LevelIndex == 0) LoadLevel1();
         if (LevelIndex == 1) LoadLevel2();
         if (LevelIndex == 2) LoadLevel3();
@@ -28,7 +40,8 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(LevelIndex);
+        
+        Debug.Log(gameStarted);
         if (CurrentState == State.Loss)
         {
 
@@ -37,6 +50,11 @@ public class Game : MonoBehaviour
         if (CurrentState == State.Won)
         {
 
+        }
+
+        if (CurrentState == State.StartMenu)
+        {
+            
         }
     }
 
@@ -79,9 +97,20 @@ public class Game : MonoBehaviour
         }
     }
 
-    private const string LevelIndexKey = "LevelIndex";
+    public bool gameStarted
+    {
+        get => PlayerPrefs.GetInt(GameStarted) == 1;
+        set
+        {
+            PlayerPrefs.SetInt(GameStarted, gameStarted ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+    }
 
-    private void ReloadLevel()
+    private const string LevelIndexKey = "LevelIndex";
+    public const string GameStarted = "gameStarted";
+
+    public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
