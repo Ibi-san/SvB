@@ -8,6 +8,7 @@ TagManager:
   - Tail
   - Block
   - Finishzone
+  - Heart
   layers:
   - Default
   - TransparentFX

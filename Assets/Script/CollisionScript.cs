@@ -8,6 +8,7 @@ public class CollisionScript : MonoBehaviour
     public Coroutine BlockCoroutine;
     public Coroutine TailCoroutine;
     public Game Game;
+    private bool Immortal = false;
 
 
     private void OnTriggerEnter(Collider other)
@@ -35,6 +36,12 @@ public class CollisionScript : MonoBehaviour
             Player.speed = 0;
             Game.OnPlayerWon();
             Debug.Log("Win!!!");
+        }
+
+        if (other.gameObject.tag == "Heart")
+        {
+            Immortal = true;
+            other.gameObject.SetActive(false);
         }
     }
 
@@ -64,6 +71,7 @@ public class CollisionScript : MonoBehaviour
         {
             Player.RemoveTail();
             yield return new WaitForSeconds(0.08f);
+            if (Immortal == true) Player.AddTail();
         }
     }
 }
