@@ -9,6 +9,5 @@ public class LevelText : MonoBehaviour
     void FixedUpdate()
     {
         Text.text = "Level " + (Game.LevelIndex + 1).ToString();
-        if (Game.LevelIndex == 3) Text.text = "Level " + (Game.LevelIndex).ToString();
     }
 }
