@@ -8,6 +8,7 @@ public class BlockColor : MonoBehaviour
     public Material material;
     Gradient gradient = new Gradient();
     public Block TriggerZone;
+    int value;
     void Start()
     {
         CreateGradient();
@@ -16,7 +17,7 @@ public class BlockColor : MonoBehaviour
 
     private void SetColor(Gradient _gradient)
     {
-        gameObject.GetComponent<Renderer>().material.color = _gradient.Evaluate((float)TriggerZone.Value / 30f);
+        gameObject.GetComponent<Renderer>().material.color = _gradient.Evaluate((float)TriggerZone.GetComponent<Block>().Value / 30f);
     }
 
     void CreateGradient()

@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Food
+  - Tail
+  - Block
+  - Finishzone
+  - Heart
   layers:
   - Default
   - TransparentFX
@@ -12,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Snake
   - 
   - 
   - 
