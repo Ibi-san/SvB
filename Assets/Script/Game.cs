@@ -118,7 +118,7 @@ public class Game : MonoBehaviour
         Level3.SetActive(false);
         Player.transform.position = new Vector3(0f, 0.5f, -45f);
         CurrentState = State.Playing;
-        _player.speed = 40;
+        _player.speed = 200;
         Controls.enabled = true;
         for (int i = 0; _player.tailAmount.Count > 4; i++) _player.RemoveTail();
     }
@@ -130,7 +130,7 @@ public class Game : MonoBehaviour
         Level3.SetActive(false);
         Player.transform.position = new Vector3(0f, 0.5f, -45f);
         CurrentState = State.Playing;
-        _player.speed = 50;
+        _player.speed = 300;
         Controls.enabled = true;
         for (int i = 0; _player.tailAmount.Count > 1; i++) _player.RemoveTail();
     }
@@ -142,7 +142,7 @@ public class Game : MonoBehaviour
         Level3.SetActive(true);
         Player.transform.position = new Vector3(0f, 0.5f, -45f);
         CurrentState = State.Playing;
-        _player.speed = 60;
+        _player.speed = 400;
         Controls.enabled = true;
         for (int i = 0; _player.tailAmount.Count > 1; i++) _player.RemoveTail();
     }

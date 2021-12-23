@@ -23,10 +23,13 @@ public class TailMovement : MonoBehaviour
         AddTail();
         AddTail();
     }
-
-    private void Update()
+    private void FixedUpdate()
     {
         _rigidbody.AddForce(Vector3.forward * speed);
+    }
+    private void Update()
+    {
+        
         float distance = (Player.transform.position - positions[0]).magnitude;
 
         if (distance > 1)
