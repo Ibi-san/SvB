@@ -1,2 +1,2 @@
-# SvB
- game
+SnakeVSBlocks
+Press "X" to cheat
